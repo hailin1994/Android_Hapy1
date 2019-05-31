@@ -1,0 +1,30 @@
+package com.yhl.learn.juc;
+
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * @program: learn
+ * @description: 查看AQS队列模型
+ * @author: Yhl
+ * @create: 2019-05-21 14:06
+ **/
+
+public class LockDemo {
+    private static ReentrantLock lock = new ReentrantLock();
+
+  /*  public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            Thread thread = new Thread(() -> {
+                lock.lock();
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            });
+            thread.start();
+        }
+    }*/
+}

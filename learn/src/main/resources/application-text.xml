@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+
+    <bean id="messageService" class="com.yhl.learn.spring.serviceImp.MessageServiceImpl"/>
+
+    <!--自定义工厂类-->
+    <bean id="teacherFactory" class="com.yhl.learn.spring.iocdemo.TeacherFactory"/>
+
+    <bean id="teacher" class="com.yhl.learn.spring.iocdemo.Teacher" factory-bean="teacherFactory" factory-method="creatTeacher"/>
+</beans>
