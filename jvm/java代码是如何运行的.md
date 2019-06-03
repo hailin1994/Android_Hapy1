@@ -8,7 +8,7 @@
 不同的是，Java 虚拟机会将栈细分为面向 Java 方法的 Java 方法栈，面向本地方法（用 C++ 写的
 native 方法）的本地方法栈，以及存放各个线程执行位置的 PC 寄存器。
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/jvm内存模型.png)在运行过程中，每当调用进入一个 Java 方法，Java 虚拟机会在当前线程的 Java 方法栈中生成一个
+![](https://github.com/hailin1994/learn/blob/master/jvm/imgjvm内存模型.png)在运行过程中，每当调用进入一个 Java 方法，Java 虚拟机会在当前线程的 Java 方法栈中生成一个
 
 栈帧，用以存放局部变量以及字节码的操作数。这个栈帧的大小是提前计算好的，而且 Java 虚拟机
 不要求栈帧在内存空间里连续分布。
@@ -20,7 +20,7 @@ native 方法）的本地方法栈，以及存放各个线程执行位置的 PC 
 执行；第二种是即时编译（Just-In-Time compilation，JIT），即将一个方法中包含的所有字节码编
 译成机器码后再执行。
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/jvm硬件模型.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/imgjvm硬件模型.png)
 
 前者的优势在于无需等待编译，而后者的优势在于实际运行速度更快。HotSpot 默认采用混合模
 式，综合了解释执行和即时编译两者的优点。它会先解释执行字节码，而后将其中反复执行的热点

@@ -1,6 +1,6 @@
 ### jvm内存模型
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/jvm内存.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/jvm内存.png)
 
 **线程私有的：**
 
@@ -32,7 +32,7 @@
 
 #### Java 虚拟机栈
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/虚拟机栈.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/虚拟机栈.png)
 
 **与程序计数器一样，Java虚拟机栈也是线程私有的，它的生命周期和线程相同，描述的是 Java 方法执行的内存模型，每次方法调用的数据都是通过栈传递的。**
 
@@ -98,7 +98,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 ### JVM内存参数设置
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/jvm参数设置.webp)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/jvm参数设置.webp)
 
 
 
@@ -128,7 +128,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 #### 对象的创建
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/类加载过程.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/类加载过程.png)
 
 **①类加载检查：** 虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。
 
@@ -166,11 +166,11 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 **句柄：** 如果使用句柄的话，那么Java堆中将会划分出一块内存来作为句柄池，reference 中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息；
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/句柄.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/句柄.png)
 
 **直接指针**： 如果使用直接指针访问，那么 Java 堆对象的布局中就必须考虑如何放置访问类型数据的相关信息，而reference 中存储的直接就是对象的地址。
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/直接访问.png)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/直接访问.png)
 
 **这两种对象访问方式各有优势。使用句柄来访问的最大好处是 reference 中存储的是稳定的句柄地址，在对象被移动时只会改变句柄中的实例数据指针，而 reference 本身不需要修改。使用直接指针访问方式最大的好处就是速度快，它节省了一次指针定位的时间开销。**
 
@@ -309,7 +309,7 @@ i4=i5+i6   true
 
 #### 标记-清除算法
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/标记清除.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/标记清除.jpg)
 
 算法分为“标记”和“清除”阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有被标记的对象。它是最基础的收集算法，效率也很高，但是会带来两个明显的问题：
 
@@ -318,13 +318,13 @@ i4=i5+i6   true
 
 #### 复制算法
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/复制算法.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/复制算法.jpg)
 
 为了解决效率问题，“复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。
 
 #### 标记-整理算法
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/标记整理.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/标记整理.jpg)
 
 根据老年代的特点特出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
 
@@ -346,7 +346,7 @@ Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收�
 
 **新生代采用复制算法，老年代采用标记-整理算法。**
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/Serial 收集器.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/Serial 收集器.jpg)
 
 虚拟机的设计者们当然知道 Stop The World 带来的不良用户体验，所以在后续的垃圾收集器设计中停顿时间在不断缩短（仍然还有停顿，寻找最优秀的垃圾收集器的过程仍然在继续）。
 
@@ -356,7 +356,7 @@ Serial（串行）收集器收集器是最基本、历史最悠久的垃圾收�
 
 **ParNew 收集器其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。**
 
-**新生代采用复制算法，老年代采用标记-整理算法。**![](https://github.com/hailin1994/learn/blob/master/jvm/ParNew.jpg)
+**新生代采用复制算法，老年代采用标记-整理算法。**![](https://github.com/hailin1994/learn/blob/master/jvm/img/ParNew.jpg)
 
 它是许多运行在 Server 模式下的虚拟机的首要选择，除了 Serial 收集器外，只有它能与 CMS 收集器（真正意义上的并发收集器，后面会介绍到）配合工作。
 
@@ -381,7 +381,7 @@ Parallel Scavenge 收集器类似于 ParNew 收集器。 **那么它有什么特
 
 **Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。所谓吞吐量就是 CPU 中用于运行用户代码的时间与 CPU 总消耗时间的比值。** Parallel Scavenge 收集器提供了很多参数供用户找到最合适的停顿时间或最大吞吐量，如果对于收集器运作不太了解的话，手工优化存在的话可以选择把内存管理优化交给虚拟机去完成也是一个不错的选择。
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/Parallel Scavenge.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/Parallel Scavenge.jpg)
 
 #### Serial Old 收集器
 
@@ -404,7 +404,7 @@ Parallel Scavenge 收集器类似于 ParNew 收集器。 **那么它有什么特
 - **重新标记：** 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短
 - **并发清除：** 开启用户线程，同时 GC 线程开始对为标记的区域做清扫。
 
-![](https://github.com/hailin1994/learn/blob/master/jvm/CMS.jpg)
+![](https://github.com/hailin1994/learn/blob/master/jvm/img/CMS.jpg)
 
 从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：**并发收集、低停顿**。但是它有下面三个明显的缺点：
 
