@@ -1,4 +1,4 @@
-![](C:\Users\hailin\Desktop\blog\spring\mvc\img\springMvc流程图.png)
+![](https://github.com/hailin1994/learn/tree/master/spring/mvc/img/springMvc流程图.png)
 
 对上述流程图的解释：
 
